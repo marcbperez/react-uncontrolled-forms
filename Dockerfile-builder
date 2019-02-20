@@ -1,0 +1,9 @@
+FROM mbp76/docker-gradle
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && apt-get install \
+  -y nodejs
+
+ADD . /home/builder
+WORKDIR /home/builder
+CMD gradle

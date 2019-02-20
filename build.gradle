@@ -1,0 +1,44 @@
+defaultTasks "wrapper", "install", "test", "build", "run"
+
+def path = System.getProperty("user.dir")
+
+task wrapper(type: Wrapper) {
+  description "Creates the project wrapper."
+  gradleVersion = "3.4.1"
+}
+
+task install(type: Exec) {
+  description "Installs this module."
+  workingDir path
+  commandLine "npm"
+  args = ["install"]
+
+  new ByteArrayOutputStream()
+}
+
+task test(type: Exec) {
+  description "Runs Jest test cases."
+  workingDir path
+  commandLine "npm"
+  args = ["test"]
+
+  new ByteArrayOutputStream()
+}
+
+task build(type: Exec) {
+  description "Builds this module."
+  workingDir path
+  commandLine "npm"
+  args = ["run", "build"]
+
+  new ByteArrayOutputStream()
+}
+
+task run(type: Exec) {
+  description "Starts a development server."
+  workingDir path
+  commandLine "npm"
+  args = ["start"]
+
+  new ByteArrayOutputStream()
+}

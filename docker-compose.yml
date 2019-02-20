@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile-builder
+    volumes:
+      - .:/home/builder
+    ports:
+      - "3000:3000"
+
+  runner:
+    build: .
+    volumes:
+      - ./build:/usr/share/nginx/html
+    ports:
+      - "8080:80"
